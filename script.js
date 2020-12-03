@@ -1,4 +1,4 @@
-let operation = getOperation();
+const operation = getOperation();
 function getOperation() {
   let operation;
   do {  
@@ -7,8 +7,8 @@ function getOperation() {
   while (operation != '+' && operation != '-' && operation != '*' && operation != '/');
   return operation;
 }
-let firstNumber = getNumber('first');
-let secondNumber = getNumber('second');
+const firstNumber = getNumber('first');
+const secondNumber = getNumber('second');
 function getNumber(numberName) {
   let number;
   while (!isNumeric(number)) {
@@ -19,7 +19,7 @@ function getNumber(numberName) {
 function isNumeric(number) {
   return !isNaN(number);
 }
-let result = calculator(operation, firstNumber, secondNumber);
+const result = calculator(operation, firstNumber, secondNumber);
 function calculator( operator, firstOperand, secondOperand) {
   let result;
   switch(operator) {
