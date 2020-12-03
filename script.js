@@ -1,14 +1,36 @@
-let operation = prompt('What operation do you want to do?', '+ - * /');
-let firstNumber;
-let secondNumber;
-function calculator() {
-  firstNumber = +prompt('Enter the first number');
-  secondNumber = +prompt('Enter the second number');
+let operation = getOperation();
+function getOperation() {
+  let operation;
+  do {  
+    operation = prompt('What operation do you want to do?', '+ - * /');
+  }
+  while (operation != '+' && operation != '-' && operation != '*' && operation != '/');
+  return operation;
 }
-calculator();
-switch(operation) {
-  case '+' : alert(`operation result  ${firstNumber} ${operation} ${secondNumber} = ` + (firstNumber + secondNumber)); break; 
-  case '-' : alert(`operation result  ${firstNumber} ${operation} ${secondNumber} = ` + (firstNumber - secondNumber)); break;
-  case '*' : alert(`operation result  ${firstNumber} ${operation} ${secondNumber} = ` + (firstNumber * secondNumber)); break;
-  case '/' : alert(`operation result  ${firstNumber} ${operation} ${secondNumber} = ` + (firstNumber / secondNumber)); break;
-} 
+let firstNumber = getNumber('first');
+let secondNumber = getNumber('second');
+function getNumber(numberName) {
+  let number;
+  while (!isNumeric(number)) {
+    number = +prompt('Enter the ' + numberName + ' number')
+  }
+  return number;
+}
+function isNumeric(number) {
+  return !isNaN(number);
+}
+let result = calculator(operation, firstNumber, secondNumber);
+function calculator( operator, firstOperand, secondOperand) {
+  let result;
+  switch(operator) {
+    case '+' : result = firstOperand + secondOperand; break; 
+    case '-' : result = firstOperand - secondOperand; break;
+    case '*' : result = firstOperand * secondOperand; break;
+    case '/' : result = firstOperand / secondOperand; break;
+  } 
+  return result;
+}
+showResult(operation, firstNumber, secondNumber, result);
+function showResult(operator, firstOperand, secondOperand, total) {
+  alert(`operation result  ${firstOperand} ${operator} ${secondOperand} = ${total}`);
+}
